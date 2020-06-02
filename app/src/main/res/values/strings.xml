@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">سرآشپز الی</string>
-    <string name="MainMenu1">وعده های غذایی</string>
+    <string name="MainMenu1">غذاها</string>
+    <string name="MainMenu2">تقویم غذایی</string>
+    <string name="MainMenu3">وعده های غذایی</string>
+    <string name="MainMenu4">تنظیمات</string>
 </resources>
