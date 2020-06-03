@@ -2,6 +2,7 @@ package com.ahankoob.foodassistant.Activities;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 
 import com.ahankoob.foodassistant.R;
 import com.google.android.material.appbar.AppBarLayout;
@@ -23,5 +24,11 @@ public class Main extends AppCompatActivity {
 			((AppBarLayout)findViewById(R.id.mainAppBar)).setOutlineProvider(null);
 		}
 
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main_menu, menu);
+		return true;
 	}
 }

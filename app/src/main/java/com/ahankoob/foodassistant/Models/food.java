@@ -1,21 +1,21 @@
 package com.ahankoob.foodassistant.Models;
 
-import com.ahankoob.foodassistant.DB.myDB;
-import com.dbflow5.annotation.Column;
-import com.dbflow5.annotation.PrimaryKey;
-import com.dbflow5.annotation.Table;
+import com.orm.SugarRecord;
+import com.orm.dsl.Unique;
 
-import java.util.UUID;
 
-@Table(database = myDB.class)
-public class food {
-	@PrimaryKey
-	UUID id;
-
-	@Column
+public class food extends SugarRecord{
+	@Unique
+	int id;
 	int meal_id;
-
-	@Column
 	String name;
 
+	public food() {
+	}
+
+	public food(int id, int meal_id, String name) {
+		this.id = id;
+		this.meal_id = meal_id;
+		this.name = name;
+	}
 }
