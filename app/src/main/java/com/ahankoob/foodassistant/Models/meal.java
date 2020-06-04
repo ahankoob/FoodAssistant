@@ -4,7 +4,7 @@ package com.ahankoob.foodassistant.Models;
 import com.orm.SugarRecord;
 import com.orm.dsl.Unique;
 
-public class meal extends SugarRecord {
+public class meal extends SugarRecord{
 	@Unique
 	int id;
 	String name;

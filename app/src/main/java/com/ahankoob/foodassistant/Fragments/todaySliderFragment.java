@@ -8,18 +8,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ahankoob.foodassistant.Models.foodCalendar;
+import com.ahankoob.foodassistant.Models.food_calendar;
 import com.ahankoob.foodassistant.Models.todaySliderModel;
 import com.ahankoob.foodassistant.R;
 import com.ahankoob.foodassistant.classes.CalendarTool;
+import com.ahankoob.foodassistant.classes.FontManager;
+import com.ahankoob.foodassistant.classes.tempToday;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.fragment.app.Fragment;
 
 public class todaySliderFragment extends Fragment {
 	private int pageNumber;
-	ArrayList<todaySliderModel> list;
+	ArrayList<tempToday> list;
+	ArrayList<todaySliderModel> sliderModels;
 
 	public static todaySliderFragment newInstance(int page, Context context) {
 
@@ -33,7 +37,8 @@ public class todaySliderFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		list = new ArrayList<todaySliderModel>();
+		list = new ArrayList<tempToday>();
+		sliderModels = new ArrayList();
 
 		CalendarTool calendarTool = new CalendarTool();
 		int persianCurrentMonth = calendarTool.getIranianMonth();
@@ -43,7 +48,13 @@ public class todaySliderFragment extends Fragment {
 		else
 			monthDays=30;
 		for (int i =monthDays;i>=1;i--){
-			list.add(new todaySliderModel(i,new foodCalendar(i,1,1,calendarTool.getIranianYear(),persianCurrentMonth,i)));
+			list.add(new tempToday(i,1,1,calendarTool.getIranianYear(),persianCurrentMonth,i));
+			List<food_calendar> foodCalendars = food_calendar.find(food_calendar.class,"year = ? and mon = ? and day = ?",String.valueOf( calendarTool.getIranianYear()),
+					String.valueOf( calendarTool.getIranianMonth())
+					,String.valueOf( calendarTool.getIranianDay()));
+			sliderModels.add(new todaySliderModel(i,foodCalendars));
+
+
 		}
 
 		pageNumber = getArguments().getInt("pageNumber", persianCurrentMonth);
@@ -53,9 +64,13 @@ public class todaySliderFragment extends Fragment {
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.main_today_slider_item, container, false);
 		TextView todayDate = view.findViewById(R.id.todayDate);
+		TextView todayDateTitle = view.findViewById(R.id.todayDateTitle);
+		FontManager.markAsIconContainer(todayDate, FontManager.getDastnevisFont(container.getContext().getAssets()));
+		FontManager.markAsIconContainer(todayDateTitle, FontManager.getDastnevisFont(container.getContext().getAssets()));
+
 		if(pageNumber<=(list.size()-1)) {
-			todaySliderModel model = (todaySliderModel)list.get(pageNumber);
-			todayDate.setText(model.getCalendar().getYear()+"/"+model.getCalendar().getMon()+"/"+model.getCalendar().getDay());
+			tempToday model = (tempToday) list.get(pageNumber);
+			todayDate.setText(model.getYear()+"/"+model.getMon()+"/"+model.getDay());
 		}
 		return view;
 	}

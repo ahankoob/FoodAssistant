@@ -24,6 +24,7 @@ public class Main extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//new dbSampleData();
 		setVars();
 		setSupportActionBar(toolbar);
 		todayPager.setAdapter(adapterViewPager);
@@ -65,10 +66,15 @@ public class Main extends AppCompatActivity {
 		todayPager = (ViewPager) findViewById(R.id.TodayFoodSlider);
 		adapterViewPager = new today_slider(getSupportFragmentManager(),this);
 	}
+	public void setfonts(){
+		//FontManager.markAsIconContainer(view, FontManager.getVazirFont(getAssets()));
+
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return true;
 	}
+
 }

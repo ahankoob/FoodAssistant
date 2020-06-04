@@ -1,10 +1,12 @@
 package com.ahankoob.foodassistant.Models;
 
+import java.util.List;
+
 public class todaySliderModel {
 	int number;
-	foodCalendar calendar;
+	List<food_calendar> calendar;
 
-	public todaySliderModel(int number, foodCalendar calendar) {
+	public todaySliderModel(int number, List<food_calendar> calendar) {
 		this.number = number;
 		this.calendar = calendar;
 	}
@@ -17,11 +19,11 @@ public class todaySliderModel {
 		this.number = number;
 	}
 
-	public foodCalendar getCalendar() {
+	public List<food_calendar> getCalendar() {
 		return calendar;
 	}
 
-	public void setCalendar(foodCalendar calendar) {
+	public void setCalendar(List<food_calendar> calendar) {
 		this.calendar = calendar;
 	}
 }
