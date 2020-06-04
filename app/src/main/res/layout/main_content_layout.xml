@@ -8,6 +8,7 @@
     android:layoutDirection="rtl"
 
     >
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -39,6 +40,13 @@
         android:orientation="vertical"
         android:background="@drawable/foodbg"
         >
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/TodayFoodSlider"
+            android:layoutDirection="rtl"
+
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
