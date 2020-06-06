@@ -1,7 +1,6 @@
 package com.ahankoob.foodassistant.classes;
 
 import com.ahankoob.foodassistant.Models.food;
-import com.ahankoob.foodassistant.Models.food_calendar;
 import com.ahankoob.foodassistant.Models.meal;
 
 import java.util.Random;
@@ -30,7 +29,7 @@ public class dbSampleData {
 		for(int i=1;i<=31;i++){
 			foodcalendar_id++;
 			Random rand = new Random();
-
+/*
 			int sobhane_id = rand.nextInt(2)+1;
 			int nahar_id = rand.nextInt(5)+3;
 			int sham_id = rand.nextInt(3)+8;
@@ -42,7 +41,7 @@ public class dbSampleData {
 
 			new food_calendar(foodcalendar_id,sham_id,3,1399,3,i).save();
 			foodcalendar_id++;
-
+*/
 
 
 		}

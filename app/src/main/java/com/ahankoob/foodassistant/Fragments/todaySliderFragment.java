@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.ahankoob.foodassistant.Adapters.todayMealsListviewAdapter;
 import com.ahankoob.foodassistant.Models.food_calendar;
 import com.ahankoob.foodassistant.Models.todaySliderModel;
 import com.ahankoob.foodassistant.R;
@@ -31,7 +32,6 @@ public class todaySliderFragment extends Fragment {
 		Bundle args = new Bundle();
 		args.putInt("pageNumber", page);
 		todaySliderFragment.setArguments(args);
-		Toast.makeText(context,String.valueOf(page), Toast.LENGTH_SHORT).show();
 		return todaySliderFragment;
 	}
 	@Override
@@ -49,10 +49,7 @@ public class todaySliderFragment extends Fragment {
 			monthDays=30;
 		for (int i =monthDays;i>=1;i--){
 			list.add(new tempToday(i,1,1,calendarTool.getIranianYear(),persianCurrentMonth,i));
-			List<food_calendar> foodCalendars = food_calendar.find(food_calendar.class,"year = ? and mon = ? and day = ?",String.valueOf( calendarTool.getIranianYear()),
-					String.valueOf( calendarTool.getIranianMonth())
-					,String.valueOf( calendarTool.getIranianDay()));
-			sliderModels.add(new todaySliderModel(i,foodCalendars));
+
 
 
 		}
@@ -67,10 +64,22 @@ public class todaySliderFragment extends Fragment {
 		TextView todayDateTitle = view.findViewById(R.id.todayDateTitle);
 		FontManager.markAsIconContainer(todayDate, FontManager.getDastnevisFont(container.getContext().getAssets()));
 		FontManager.markAsIconContainer(todayDateTitle, FontManager.getDastnevisFont(container.getContext().getAssets()));
+		tempToday model = null;
+		CalendarTool calendarTool = new CalendarTool();
 
 		if(pageNumber<=(list.size()-1)) {
-			tempToday model = (tempToday) list.get(pageNumber);
+			model = (tempToday) list.get(pageNumber);
 			todayDate.setText(model.getYear()+"/"+model.getMon()+"/"+model.getDay());
+
+			ListView mealsListView = view.findViewById(R.id.mealsListView);
+
+			List<food_calendar> foodCalendars = food_calendar.find(food_calendar.class,"year = ? and mon = ? and day = ?",String.valueOf( model.getYear()),
+					String.valueOf( model.getMon())
+					,String.valueOf( model.getDay()));
+
+			todayMealsListviewAdapter adapter = new todayMealsListviewAdapter(container.getContext(),R.id.mealsListView,foodCalendars);
+
+			mealsListView.setAdapter(adapter);
 		}
 		return view;
 	}

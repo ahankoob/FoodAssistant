@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Fragments.todaySliderFragment"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layoutDirection="rtl">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/_10sdp">
+        android:paddingTop="@dimen/_10sdp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -24,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:text="تاریخ امروز:"
+                android:text="تاریخ:"
                 android:textSize="@dimen/_20sdp"
                 android:textColor="#ffffff"
                 android:id="@+id/todayDateTitle"

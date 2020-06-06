@@ -6,10 +6,10 @@ import com.orm.dsl.Unique;
 
 public class meal extends SugarRecord{
 	@Unique
-	int id;
-	String name;
-	int hour;
-	int min;
+	public int id;
+	public String name;
+	public int hour;
+	public int min;
 
 	public meal() {
 	}

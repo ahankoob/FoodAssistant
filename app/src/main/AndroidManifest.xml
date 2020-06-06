@@ -4,25 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        tools:replace="android:icon,android:theme"
+        android:name=".App.myApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name="com.orm.SugarApp">
-        <meta-data android:name="DATABASE" android:value="myDB.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.ahankoob.foodassistant" />
-        <activity android:name=".Activities.Main" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+        tools:replace="android:icon,android:theme">
+        <activity android:name=".Activities.Foods"></activity>
+
+        <activity
+            android:name=".Activities.Main"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.ahankoob.foodassistant" />
+
+        <meta-data
+            android:name="DATABASE"
+            android:value="myDB.db" />
     </application>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

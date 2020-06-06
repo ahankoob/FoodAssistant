@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/_30sdp"
-    android:layout_marginRight="@dimen/_20sdp"
-    android:layout_marginLeft="@dimen/_20sdp"
+    android:paddingRight="@dimen/_30sdp"
+    android:paddingLeft="@dimen/_30sdp"
     android:layout_centerHorizontal="true"
     android:layout_alignParentTop="true"
     android:orientation="horizontal"
     android:id="@+id/TodayTitle"
-    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_5sdp"
     android:layoutDirection="rtl">
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="4"
-        android:text="صبحانه"
-        android:textSize="@dimen/_20sdp"
-        android:id="@+id/todayMealTitle"
-        android:gravity="center"
-        android:textColor="#ffffff"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:text="صبحانه"
+            android:textSize="@dimen/_15sdp"
+            android:id="@+id/todayMealTitle"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            />
 
-        />
-
-    <TextView
-        android:id="@+id/todayMeal"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="6"
-        android:paddingRight="@dimen/_10sdp"
-        android:text="تخم مرغ"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/_25sdp" />
+        <TextView
+            android:id="@+id/todayMeal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:paddingRight="@dimen/_10sdp"
+            android:text="تخم مرغ"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_18sdp" />
 </LinearLayout>

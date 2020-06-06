@@ -29,6 +29,10 @@ public class FontManager {
 
 		return Typeface.createFromAsset(assets,  "fonts/danstevis.otf");
 	}
+	public static Typeface getLalezarFont(AssetManager assets) {
+
+		return Typeface.createFromAsset(assets,  "fonts/lalezar.ttf");
+	}
 	public static void markAsIconContainer(View v, Typeface typeface) {
 		if (v instanceof EditText ) {
 			((EditText) v).setTypeface(typeface);

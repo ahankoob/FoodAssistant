@@ -1,16 +1,21 @@
 package com.ahankoob.foodassistant.Activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 
 import com.ahankoob.foodassistant.Adapters.today_slider;
 import com.ahankoob.foodassistant.R;
 import com.ahankoob.foodassistant.classes.CalendarTool;
+import com.ahankoob.foodassistant.classes.FontManager;
 import com.google.android.material.appbar.AppBarLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -19,6 +24,7 @@ public class Main extends AppCompatActivity {
 	Toolbar toolbar;
 	ViewPager todayPager;
 	FragmentPagerAdapter adapterViewPager;
+	TextView mainFoodCalcItem,mainFoodsItem,mainMealsItem,mainSettingsItem;
 	private int lastPosition = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,36 +32,23 @@ public class Main extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 		//new dbSampleData();
 		setVars();
+		setfonts();
 		setSupportActionBar(toolbar);
 		todayPager.setAdapter(adapterViewPager);
 		CalendarTool calendarTool = new CalendarTool();
 		int persianCurrentDay = calendarTool.getIranianDay();
-		todayPager.setCurrentItem(persianCurrentDay+1);
-		todayPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-			@Override
-			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-				if (lastPosition > position) {
-					System.out.println("Left");
-				}else if (lastPosition < position) {
-					System.out.println("Right");
-				}
-				lastPosition = position;
-			}
+		todayPager.setCurrentItem(persianCurrentDay-1);
 
-			@Override
-			public void onPageSelected(int position) {
 
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int state) {
-
-			}
-		});
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			((AppBarLayout)findViewById(R.id.mainAppBar)).setOutlineProvider(null);
 		}
-
+		((CardView)findViewById(R.id.mainFoodsItemCard)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(Main.this,Foods.class));
+			}
+		});
 
 
 
@@ -65,9 +58,17 @@ public class Main extends AppCompatActivity {
 		toolbar =(Toolbar) findViewById(R.id.AppToolbar);
 		todayPager = (ViewPager) findViewById(R.id.TodayFoodSlider);
 		adapterViewPager = new today_slider(getSupportFragmentManager(),this);
+
+		mainFoodCalcItem = (TextView) findViewById(R.id.mainFoodCalcItem);
+		mainFoodsItem = (TextView) findViewById(R.id.mainFoodsItem);
+		mainMealsItem = (TextView) findViewById(R.id.mainMealsItem);
+		mainSettingsItem = (TextView) findViewById(R.id.mainSettingsItem);
 	}
 	public void setfonts(){
-		//FontManager.markAsIconContainer(view, FontManager.getVazirFont(getAssets()));
+		FontManager.markAsIconContainer(mainFoodCalcItem, FontManager.getLalezarFont(getAssets()));
+		FontManager.markAsIconContainer(mainFoodsItem, FontManager.getLalezarFont(getAssets()));
+		FontManager.markAsIconContainer(mainMealsItem, FontManager.getLalezarFont(getAssets()));
+		FontManager.markAsIconContainer(mainSettingsItem, FontManager.getLalezarFont(getAssets()));
 
 	}
 	@Override
@@ -76,5 +77,6 @@ public class Main extends AppCompatActivity {
 		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return true;
 	}
+
 
 }
