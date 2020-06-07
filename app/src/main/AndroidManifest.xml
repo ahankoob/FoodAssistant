@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".Activities.Foods"></activity>
+        <activity android:name=".Activities.Foods"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            ></activity>
 
         <activity
             android:name=".Activities.Main"

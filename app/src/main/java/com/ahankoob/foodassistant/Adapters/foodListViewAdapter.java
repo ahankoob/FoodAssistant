@@ -4,7 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.ahankoob.foodassistant.Models.food;
@@ -17,54 +18,63 @@ import com.orm.query.Select;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class foodListViewAdapter extends ArrayAdapter<food> {
+public class foodListViewAdapter extends RecyclerView.Adapter<foodListViewAdapter.ViewHolder> {
 	List<food> foods ;
 	Context context;
 
-	public foodListViewAdapter( Context context, int resource, List<food> foods) {
-		super(context, resource, foods);
+	public foodListViewAdapter(List<food> foods, Context context) {
 		this.foods = foods;
 		this.context = context;
 	}
 
+	@NonNull
 	@Override
-	public int getCount() {
+	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_listview_item,parent,false);
+		return new ViewHolder(view);
+	}
+
+	@Override
+	public void onBindViewHolder(ViewHolder holder, int position) {
+		food item = foods.get(position);
+		List<food_meal> food_meals = Select.from(food_meal.class).where(Condition.prop("FOODID").eq(item.getId())).list();
+		String meals_list="";
+		for(food_meal myFoodMeal : food_meals){
+			meal myMeal = meal.findById(meal.class,myFoodMeal.meal_id);
+			meals_list+=myMeal.name+" ";
+		}
+
+		holder.food_name.setText(item.name);
+		holder.meal_name.setText(meals_list);
+		final PopupMenu popup = new PopupMenu(holder.popMenu.getContext(),holder.popMenu);
+		popup.inflate(R.menu.food_item_popmenu);
+		holder.popMenu.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				popup.show();
+			}
+		});
+
+	}
+
+	@Override
+	public int getItemCount() {
 		return foods.size();
 	}
 
-	@Nullable
-	@Override
-	public food getItem(int position) {
-		return foods.get(position);
+
+	public class ViewHolder extends RecyclerView.ViewHolder{
+
+		TextView food_name,meal_name;
+		ImageButton popMenu;
+		public ViewHolder(View itemView) {
+			super(itemView);
+			food_name = (TextView) itemView.findViewById(R.id.food_name);
+			meal_name = (TextView) itemView.findViewById(R.id.meal_name);
+			popMenu = (ImageButton) itemView.findViewById(R.id.popMenu);
+		}
 	}
 
-	@NonNull
-	@Override
-	public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-		View view=null;
-		food item = foods.get(position);
-		if(convertView==null){
-			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(context.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.food_listview_item,parent,false);
-
-			List<food_meal> food_meals = Select.from(food_meal.class).where(Condition.prop("FOODID").eq(item.getId())).list();
-			String meals_list="";
-			for(food_meal myFoodMeal : food_meals){
-				meal myMeal = meal.findById(meal.class,myFoodMeal.meal_id);
-				meals_list+=myMeal.name+" ";
-			}
-
-			TextView food_name = view.findViewById(R.id.food_name);
-			food_name.setText(item.name);
-			TextView meal_name = view.findViewById(R.id.meal_name);
-			meal_name.setText(meals_list);
-		}
-		else
-		{
-			view = convertView;
-		}
-		return view;
-	}
 }

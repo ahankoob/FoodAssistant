@@ -4,4 +4,8 @@
     <string name="MainMenu2">تقویم غذایی</string>
     <string name="MainMenu3">وعده های غذایی</string>
     <string name="MainMenu4">تنظیمات</string>
+
+    <!-- MENUS -->
+    <string name="food_edit">ویرایش</string>
+    <string name="food_remove">حذف</string>
 </resources>
