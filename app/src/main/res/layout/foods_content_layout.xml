@@ -12,37 +12,40 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150sdp"
-        android:background="@color/transparent"
         android:id="@+id/mainAppBar"
-        android:layoutDirection="rtl"
-        android:scrollbars="none"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.Toolbar"
+        android:theme="@style/AppTheme"
+
 
         >
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            android:background="@color/colorPrimaryDark"
+            app:contentScrim="?attr/colorPrimary"
+
+            >
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/foodbg"
-                android:scaleType="matrix"
+                android:src="@drawable/ghorme"
+                android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
+
                 />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/AppToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"                 android:background="@color/transparent"
-                app:titleTextColor="@color/rippelColor"
-                app:menu="@menu/main_menu"
-                app:navigationIcon="@android:drawable/ic_dialog_dialer"
+                app:layout_collapseMode="pin"
+                app:titleTextColor="@color/colorWhite"
+                app:menu="@menu/food_menu"
                 app:title="لیست غذاها"
                 android:elevation="0dp"
                 android:theme="@style/AppTheme.Toolbar"
+
 
 
                 >
@@ -53,7 +56,9 @@
                     android:layout_gravity="top|right"
                     android:layout_marginRight="@dimen/_50sdp"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    android:id="@+id/FoodSearch"
                     />
+
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -66,7 +71,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/_15sdp"
             android:orientation="vertical"
 
             >

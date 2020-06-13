@@ -4,11 +4,11 @@
 
     <item
         android:id="@+id/menu1"
-        android:title="Item" app:showAsAction="always"/>
+        android:title="Item" />
     <item
         android:id="@+id/menu2"
-        android:title="Item" app:showAsAction="always"/>
+        android:title="Item" />
     <item
         android:id="@+id/menu3"
-        android:title="Item" app:showAsAction="always"/>
+        android:title="Item" />
 </menu>

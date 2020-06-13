@@ -5,7 +5,11 @@
     <string name="MainMenu3">وعده های غذایی</string>
     <string name="MainMenu4">تنظیمات</string>
 
+
+    <string name="food_name">نام غذا</string>
     <!-- MENUS -->
+    <string name="food_new">ثبت غذای جدید</string>
     <string name="food_edit">ویرایش</string>
     <string name="food_remove">حذف</string>
+
 </resources>

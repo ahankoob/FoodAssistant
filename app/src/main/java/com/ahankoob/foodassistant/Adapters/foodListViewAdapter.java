@@ -2,12 +2,14 @@ package com.ahankoob.foodassistant.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.ahankoob.foodassistant.Dialogs.FoodItemMenuDialog;
 import com.ahankoob.foodassistant.Models.food;
 import com.ahankoob.foodassistant.Models.food_meal;
 import com.ahankoob.foodassistant.Models.meal;
@@ -38,7 +40,7 @@ public class foodListViewAdapter extends RecyclerView.Adapter<foodListViewAdapte
 
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
-		food item = foods.get(position);
+		final food item = foods.get(position);
 		List<food_meal> food_meals = Select.from(food_meal.class).where(Condition.prop("FOODID").eq(item.getId())).list();
 		String meals_list="";
 		for(food_meal myFoodMeal : food_meals){
@@ -56,9 +58,29 @@ public class foodListViewAdapter extends RecyclerView.Adapter<foodListViewAdapte
 				popup.show();
 			}
 		});
+		popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem menuItem) {
+				if (menuItem.getItemId()==R.id.food_edit){
+					FoodItemMenuDialog dialog = new FoodItemMenuDialog(context,item.getId().intValue());
+					dialog.show();
+				}
+				else if (menuItem.getItemId()==R.id.food_remove){
+					food.delete(food.findById(food.class,item.getId()));
+					foodListViewAdapter.this.setData(food.listAll(food.class,"ID DESC"));
+					foodListViewAdapter.this.notifyDataSetChanged();
+				}
+				return false;
+			}
+		});
 
 	}
-
+	public void setData(List<food> foods){
+		this.foods = foods;
+		notifyDataSetChanged();
+		// where this.data is the recyclerView's dataset you are
+		// setting in adapter=new Adapter(this,db.getData());
+	}
 	@Override
 	public int getItemCount() {
 		return foods.size();

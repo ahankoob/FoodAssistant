@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".Activities.Foods"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            ></activity>
-
+        <activity android:name=".Dialogs.FoodItemMenuDialog"></activity>
+        <activity
+            android:name=".Activities.Foods"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".Activities.Main"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
@@ -25,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="VERSION"
             android:value="1" />
@@ -34,7 +35,6 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.ahankoob.foodassistant" />
-
         <meta-data
             android:name="DATABASE"
             android:value="myDB.db" />

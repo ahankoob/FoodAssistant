@@ -13,6 +13,9 @@ import com.ahankoob.foodassistant.classes.CalendarTool;
 import com.ahankoob.foodassistant.classes.FontManager;
 import com.google.android.material.appbar.AppBarLayout;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -35,9 +38,12 @@ public class Main extends AppCompatActivity {
 		setfonts();
 		setSupportActionBar(toolbar);
 		todayPager.setAdapter(adapterViewPager);
+		Date mydate =  Calendar.getInstance().getTime();
+
 		CalendarTool calendarTool = new CalendarTool();
+		calendarTool.setGregorianDate(mydate.getYear(),mydate.getMonth(),mydate.getDay());
 		int persianCurrentDay = calendarTool.getIranianDay();
-		todayPager.setCurrentItem(persianCurrentDay-1);
+		todayPager.setCurrentItem(persianCurrentDay);
 
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
