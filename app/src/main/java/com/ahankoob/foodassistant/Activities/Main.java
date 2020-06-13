@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.ahankoob.foodassistant.Adapters.today_slider;
 import com.ahankoob.foodassistant.R;
-import com.ahankoob.foodassistant.classes.CalendarTool;
 import com.ahankoob.foodassistant.classes.FontManager;
+import com.ahankoob.foodassistant.classes.JDF;
 import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.Calendar;
@@ -40,10 +40,10 @@ public class Main extends AppCompatActivity {
 		todayPager.setAdapter(adapterViewPager);
 		Date mydate =  Calendar.getInstance().getTime();
 
-		CalendarTool calendarTool = new CalendarTool();
-		calendarTool.setGregorianDate(mydate.getYear(),mydate.getMonth(),mydate.getDay());
+		JDF calendarTool = new JDF();
 		int persianCurrentDay = calendarTool.getIranianDay();
-		todayPager.setCurrentItem(persianCurrentDay);
+		todayPager.setCurrentItem(getMonthDays()-persianCurrentDay);
+
 
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -53,6 +53,12 @@ public class Main extends AppCompatActivity {
 			@Override
 			public void onClick(View view) {
 				startActivity(new Intent(Main.this,Foods.class));
+			}
+		});
+		((CardView)findViewById(R.id.mainMealsItemCard)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(Main.this,Meals.class));
 			}
 		});
 
@@ -82,6 +88,16 @@ public class Main extends AppCompatActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return true;
+	}
+	public int getMonthDays(){
+		JDF calendarTool = new JDF();
+		int persianCurrentMonth = calendarTool.getIranianMonth();
+		int monthDays=0;
+		if (persianCurrentMonth>=1 && persianCurrentMonth<=6)
+			monthDays=31;
+		else
+			monthDays=30;
+		return monthDays;
 	}
 
 

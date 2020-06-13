@@ -44,8 +44,8 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:titleTextColor="@color/colorWhite"
-                app:menu="@menu/food_menu"
-                app:title="لیست غذاها"
+                app:menu="@menu/meal_menu"
+                app:title="لیست وعده ها"
                 android:elevation="0dp"
                 android:theme="@style/AppTheme.Toolbar"
 
@@ -59,7 +59,7 @@
                     android:layout_gravity="top|right"
                     android:layout_marginRight="@dimen/_50sdp"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                    android:id="@+id/FoodSearch"
+                    android:id="@+id/MealsSearch"
                     />
 
             </androidx.appcompat.widget.Toolbar>
@@ -82,7 +82,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/foodsRecyclerView"/>
+                android:id="@+id/mealsRecyclerView"/>
 
 
         </LinearLayout>

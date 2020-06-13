@@ -3,7 +3,7 @@ package com.ahankoob.foodassistant.Adapters;
 import android.content.Context;
 
 import com.ahankoob.foodassistant.Fragments.todaySliderFragment;
-import com.ahankoob.foodassistant.classes.CalendarTool;
+import com.ahankoob.foodassistant.classes.JDF;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,7 +28,7 @@ public class today_slider extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		CalendarTool calendarTool = new CalendarTool();
+		JDF calendarTool = new JDF();
 		int persianCurrentMonth = calendarTool.getIranianMonth();
 		int monthDays=0;
 		if (persianCurrentMonth>=1 && persianCurrentMonth<=6)

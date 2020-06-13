@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/food_new" android:title=""
+    <item android:id="@+id/meal_new" android:title=""
         android:icon="@drawable/plus"
          app:showAsAction="ifRoom"/>
 
