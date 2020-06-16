@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.ahankoob.foodassistant.Dialogs.MealItemMenuDialog;
 import com.ahankoob.foodassistant.Models.meal;
@@ -43,8 +42,6 @@ public class mealsListViewAdapter extends RecyclerView.Adapter<mealsListViewAdap
 		final meal item = meals.get(position);
 
 		holder.meal_name.setText(item.name);
-		holder.timepicker.setHour(item.hour);
-		holder.timepicker.setMinute(item.min);
 		final PopupMenu popup = new PopupMenu(holder.popMenu.getContext(),holder.popMenu);
 		popup.inflate(R.menu.meal_item_popmenu);
 		holder.popMenu.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +80,10 @@ public class mealsListViewAdapter extends RecyclerView.Adapter<mealsListViewAdap
 	public class ViewHolder extends RecyclerView.ViewHolder{
 
 		TextView meal_name;
-		TimePicker timepicker;
 		ImageButton popMenu;
 		public ViewHolder(View itemView) {
 			super(itemView);
 			meal_name = (TextView) itemView.findViewById(R.id.meal_name);
-			timepicker = itemView.findViewById(R.id.timePicker);
 			popMenu = (ImageButton) itemView.findViewById(R.id.popMenu);
 		}
 	}

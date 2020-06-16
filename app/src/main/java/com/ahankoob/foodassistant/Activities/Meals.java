@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Meals extends AppCompatActivity {
-	RecyclerView foodsRecyclerView;
+	RecyclerView mealsRecyclerView;
 	Toolbar toolbar;
 	List<meal> meals;
 	SearchView MealSearch;
@@ -43,11 +43,11 @@ public class Meals extends AppCompatActivity {
 		meals = meal.listAll(meal.class,"ID DESC");
 		adapter = new mealsListViewAdapter(meals,this);
 		RecyclerView.LayoutManager manager = new GridLayoutManager(Meals.this,1);
-		foodsRecyclerView.setLayoutManager(manager);
-		foodsRecyclerView.addItemDecoration(new Meals.GridSpacingItemDecoration(1, dpToPx(10), true));
-		foodsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+		mealsRecyclerView.setLayoutManager(manager);
+		mealsRecyclerView.addItemDecoration(new Meals.GridSpacingItemDecoration(1, dpToPx(3), true));
+		mealsRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-		foodsRecyclerView.setAdapter(adapter);
+		mealsRecyclerView.setAdapter(adapter);
 
 
 		MealSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -69,7 +69,7 @@ public class Meals extends AppCompatActivity {
 	public void setVars(){
 
 		toolbar =(Toolbar) findViewById(R.id.AppToolbar);
-		foodsRecyclerView =(RecyclerView) findViewById(R.id.foodsRecyclerView);
+		mealsRecyclerView =(RecyclerView) findViewById(R.id.mealsRecyclerView);
 		MealSearch = (SearchView) findViewById(R.id.MealsSearch);
 
 	}

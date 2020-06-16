@@ -9,7 +9,7 @@
     tools:openDrawer = "start"
     android:layoutDirection="rtl"
     tools:context=".Activities.Meals">
-    <include layout="@layout/foods_content_layout"/>
+    <include layout="@layout/meals_content_layout"/>
     <com.google.android.material.navigation.NavigationView
         android:id = "@+id/nav_view"
         android:layout_width = "wrap_content"
